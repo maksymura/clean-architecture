@@ -1,0 +1,26 @@
+{
+  "name": "clean-architecture",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:express": "nodemon --watch src -e ts --exec \"ts-node src/infrastructure/http/express/server.ts\"",
+    "start:fastify": "nodemon --watch src -e ts --exec \"ts-node src/infrastructure/http/fastify/server.ts\"",
+    "build": "rimraf dist && tsc",
+    "type-check": "tsc --noEmit",
+    "lint": "eslint ./**/*.ts",
+    "lint:fix": "eslint ./**/*.ts --fix"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/express": "^4.17.17",
+    "@types/node": "^20.3.1",
+    "nodemon": "^2.0.22",
+    "ts-node": "^10.9.1"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "fastify": "^4.18.0"
+  }
+}
