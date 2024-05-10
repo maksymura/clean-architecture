@@ -12,14 +12,14 @@ async function main() {
   const arrayStorageUsersRepo = new ArrayStorageUsersRepo();
   const objectStorageUsersRepo = new ObjectStorageUsersRepo();
 
-  const expressApp = new ExpressApp(config);
-
-  expressApp.registerUsers({
+  const userUseCases = {
     getAll: new GetAllUsersUseCase(arrayStorageUsersRepo),
     get: new GetUserUseCase(arrayStorageUsersRepo),
     create: new CreateUserUseCase(objectStorageUsersRepo),
-  });
+  }
 
+  const expressApp = new ExpressApp(config);
+  expressApp.registerUsers(userUseCases);
   expressApp.start();
 }
 
