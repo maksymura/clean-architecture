@@ -1,13 +1,19 @@
-import {UserModel} from "../../../../domain/user";
-import {IUsersRepo} from "../../../../adapters/dal/users";
-import {ApplicationError} from "../../../errors";
-import {IUseCase} from "../../interfaces";
-import {CreateUserInput, CreateUserResult} from "./interface";
+import { UserModel } from '../../../../domain/user';
+import { IUsersRepo } from '../../../../interfaces/dal/users';
+import { ApplicationError } from '../../../errors';
+import { BaseUseCase } from '../../base';
 
-export class CreateUserUseCase implements IUseCase<CreateUserInput, CreateUserResult> {
+export type CreateUserInput = {
+  name: string;
+  email: string;
+};
+export type CreateUserResult = void;
+
+export class CreateUserUseCase extends BaseUseCase {
   private usersRepo: IUsersRepo;
 
   constructor(usersRepo: IUsersRepo) {
+    super();
     this.usersRepo = usersRepo;
   }
 

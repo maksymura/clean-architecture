@@ -1,15 +1,18 @@
-import {IUsersRepo} from "../../../../adapters/dal/users";
-import {IUseCase} from "../../interfaces";
-import {GetAllUsersInput, GetAllUsersResult} from "./interface";
+import { IUsersRepo } from '../../../../interfaces/dal/users';
+import { UserModel } from '../../../../domain/user';
+import { BaseUseCase } from '../../base';
 
-export class GetAllUsersUseCase implements IUseCase<GetAllUsersInput, GetAllUsersResult> {
+export type GetAllUsersResult = UserModel[];
+
+export class GetAllUsersUseCase extends BaseUseCase {
   private usersRepo: IUsersRepo;
 
   constructor(usersRepo: IUsersRepo) {
+    super();
     this.usersRepo = usersRepo;
   }
 
-  async execute(input: GetAllUsersInput): Promise<GetAllUsersResult> {
+  async execute(): Promise<GetAllUsersResult> {
     return this.usersRepo.getAll();
   }
 }

@@ -1,6 +1,6 @@
-import {DomainError} from "./errors";
+import { DomainError } from './errors';
 
-export type UserProperties = {name: string; email: string};
+export type UserProperties = { name: string; email: string };
 
 export class UserModel {
   private readonly id?: string;
@@ -8,13 +8,16 @@ export class UserModel {
   private readonly email: string;
   private static allowedEmailProviders = ['gmail', 'yahoo'];
 
-  constructor({name, email}: UserProperties, id?: string) {
+  constructor({ name, email }: UserProperties, id?: string) {
     this.id = id;
     this.name = name;
     this.email = email;
   }
 
-  public static create({name, email}: UserProperties, id?: string): UserModel {
+  public static create(
+    { name, email }: UserProperties,
+    id?: string
+  ): UserModel {
     if (!name || !email) {
       throw new DomainError('Invalid create properties');
     }
@@ -25,7 +28,7 @@ export class UserModel {
       throw new DomainError('Email provider not allowed');
     }
 
-    return new UserModel({name, email}, id);
+    return new UserModel({ name, email }, id);
   }
 
   public getId(): string | undefined {
